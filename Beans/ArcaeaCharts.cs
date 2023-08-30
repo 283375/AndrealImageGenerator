@@ -16,9 +16,9 @@ internal static class ArcaeaCharts
 
         List<SongsItem>? slst;
 
-        try
+        /* try
         {
-            slst = ArcaeaUnlimitedAPI.SongList().Result?.Content.Songs;
+            slst = ArcaeaUnlimitedAPI.SongList().Result?.Songs;
             if (slst != null) File.WriteAllText(Path.TmpSongList, JsonConvert.SerializeObject(slst));
         }
         catch
@@ -27,7 +27,9 @@ internal static class ArcaeaCharts
             slst = JsonConvert.DeserializeObject<List<SongsItem>>(File.ReadAllText(Path.TmpSongList));
         }
 
-        if (slst == null) return;
+        if (slst == null) return; */
+
+        slst = ArcaeaUnlimitedAPI.SongList().Result?.Songs;
 
         foreach (var songitem in slst)
         {

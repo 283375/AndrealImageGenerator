@@ -1,5 +1,6 @@
 ﻿using AndrealImageGenerator.Beans.Json;
 using Newtonsoft.Json;
+using Path = AndrealImageGenerator.Common.Path;
 
 namespace AndrealImageGenerator.Common;
 
@@ -56,7 +57,14 @@ internal static class ArcaeaUnlimitedAPI
         }
     }
 
-    internal static async Task<ResponseRoot<SongListContent>?> SongList() => await GetString<SongListContent>("song/list");
+    // internal static async Task<ResponseRoot<SongListContent>?> SongList() => await GetString<SongListContent>("song/list");
+
+    public static async Task<SongListContent> SongList()
+    {
+        var arcsongPath = Path.ArcSong;
+        var sr = new StreamReader(arcsongPath);
+        return JsonConvert.DeserializeObject<SongListContent>(await sr.ReadToEndAsync());
+    }
 
     internal static async Task SongAssets(string sid, int difficulty, Path pth)
         => await GetImage($"assets/song?songid={sid}&difficulty={difficulty}", pth);
