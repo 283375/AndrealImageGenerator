@@ -90,6 +90,8 @@ internal class Image : IDisposable
 
     internal void SaveAsPng(Path path) => Bitmap.Save(path, ImageFormat.Png);
 
+    internal void SaveAsPng(Stream stream) => Bitmap.Save(stream, ImageFormat.Png);
+
     internal void SaveAsJpgWithQuality(Stream stream, int quality = 50) => ImageExtend.SaveAsJpeg(Bitmap, stream, quality);
 
     internal static class ImageExtend

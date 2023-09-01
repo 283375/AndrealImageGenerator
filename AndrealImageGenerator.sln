@@ -1,16 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndrealImageGenerator", "AndrealImageGenerator.csproj", "{505FA106-482E-44D6-92E0-FB2304B3140F}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndrealImageGenerator", "AndrealImageGenerator.csproj", "{505FA106-482E-44D6-92E0-FB2304B3140F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{505FA106-482E-44D6-92E0-FB2304B3140F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{505FA106-482E-44D6-92E0-FB2304B3140F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505FA106-482E-44D6-92E0-FB2304B3140F}.Debug|x64.ActiveCfg = Debug|x64
+		{505FA106-482E-44D6-92E0-FB2304B3140F}.Debug|x64.Build.0 = Debug|x64
 		{505FA106-482E-44D6-92E0-FB2304B3140F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{505FA106-482E-44D6-92E0-FB2304B3140F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{505FA106-482E-44D6-92E0-FB2304B3140F}.Release|x64.ActiveCfg = Release|x64
+		{505FA106-482E-44D6-92E0-FB2304B3140F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A9F657A-7496-4F98-BBF9-0A8584F84F85}
 	EndGlobalSection
 EndGlobal
