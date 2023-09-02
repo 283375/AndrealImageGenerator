@@ -1,27 +1,31 @@
-﻿using AndrealImageGenerator.Beans;
+﻿using System.Runtime.InteropServices;
+using AndrealImageGenerator.Beans;
 
 namespace AndrealImageGenerator.Common;
 
+#pragma warning disable CA2211
+
 [Serializable]
+[ComVisible(true)]
 public class Path
 {
-    private static readonly string BaseDirectory = AppContext.BaseDirectory;
+    public static string AndrealDirectory = System.IO.Path.Join(AppContext.BaseDirectory, "Andreal");
 
-    public static readonly string ArcaeaBackgroundRoot = System.IO.Path.Join(BaseDirectory, "Andreal", "Background"),
-                                  ArcaeaImageRoot = System.IO.Path.Join(BaseDirectory, "Andreal", "Arcaea"),
-                                  ArcaeaSourceRoot = System.IO.Path.Join(BaseDirectory, "Andreal", "Source"),
-                                  ArcaeaFontRoot = System.IO.Path.Join(BaseDirectory, "Andreal", "Fonts"),
-                                  AndreaConfigRoot = System.IO.Path.Join(BaseDirectory, "Andreal", "Config");
+    public static string ArcaeaBackgroundRoot => System.IO.Path.Join(AndrealDirectory, "Background");
+    public static string ArcaeaImageRoot => System.IO.Path.Join(AndrealDirectory, "Arcaea");
+    public static string ArcaeaSourceRoot => System.IO.Path.Join(AndrealDirectory, "Source");
+    public static string ArcaeaFontRoot => System.IO.Path.Join(AndrealDirectory, "Fonts");
+    public static string AndreaConfigRoot => System.IO.Path.Join(AndrealDirectory, "Config");
 
-    public static readonly Path PartnerConfig = new(System.IO.Path.Join(AndreaConfigRoot, "positioninfo.json")),
-                                ArcSong = new(System.IO.Path.Join(AndreaConfigRoot, "arcsong.json")),
-                                TmpSongList = new(System.IO.Path.Join(AndreaConfigRoot, "tempsonglist.json")),
-                                ArcaeaDivider = new(System.IO.Path.Join(ArcaeaSourceRoot, "Divider.png")),
-                                ArcaeaGlass = new(System.IO.Path.Join(ArcaeaSourceRoot, "Glass.png")),
-                                ArcaeaBest30Bg = new(System.IO.Path.Join(ArcaeaSourceRoot, "B30.png")),
-                                ArcaeaBest40Bg = new(System.IO.Path.Join(ArcaeaSourceRoot, "B40.png")),
-                                ArcaeaBg1Mask = new(System.IO.Path.Join(ArcaeaSourceRoot, "Mask.png")),
-                                ExceptionReport = new(System.IO.Path.Join(BaseDirectory, "Andreal", "ExceptionReport.log"));
+    public static Path PartnerConfig => new(System.IO.Path.Join(AndreaConfigRoot, "positioninfo.json"));
+    public static Path ArcSong => new(System.IO.Path.Join(AndreaConfigRoot, "arcsong.json"));
+    public static Path TmpSongList => new(System.IO.Path.Join(AndreaConfigRoot, "tempsonglist.json"));
+    public static Path ArcaeaDivider => new(System.IO.Path.Join(ArcaeaSourceRoot, "Divider.png"));
+    public static Path ArcaeaGlass => new(System.IO.Path.Join(ArcaeaSourceRoot, "Glass.png"));
+    public static Path ArcaeaBest30Bg => new(System.IO.Path.Join(ArcaeaSourceRoot, "B30.png"));
+    public static Path ArcaeaBest40Bg => new(System.IO.Path.Join(ArcaeaSourceRoot, "B40.png"));
+    public static Path ArcaeaBg1Mask => new(System.IO.Path.Join(ArcaeaSourceRoot, "Mask.png"));
+    public static Path ExceptionReport => new(System.IO.Path.Join(AndrealDirectory, "ExceptionReport.log"));
 
     private readonly string _rawpath;
 
@@ -29,12 +33,18 @@ public class Path
 
     static Path()
     {
-        Directory.CreateDirectory(ArcaeaBackgroundRoot);
-        Directory.CreateDirectory(ArcaeaSourceRoot);
-        Directory.CreateDirectory(ArcaeaFontRoot);
-        Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Song"));
-        Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Char"));
-        Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Icon"));
+        /* if (File.Exists(BaseDirectory))
+        {
+            Directory.CreateDirectory(ArcaeaBackgroundRoot);
+            Directory.CreateDirectory(ArcaeaSourceRoot);
+            Directory.CreateDirectory(ArcaeaFontRoot);
+            Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Song"));
+            Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Char"));
+            Directory.CreateDirectory(System.IO.Path.Join(ArcaeaImageRoot, "Icon"));
+        } else
+        {
+            throw new FileNotFoundException($"BaseDirectory \"{BaseDirectory}\" doesn't exist.");
+        } */
     }
 
     private Path(string rawpath)
