@@ -1,4 +1,5 @@
-﻿using AndrealImageGenerator.Beans.Json;
+﻿using System.Runtime.InteropServices;
+using AndrealImageGenerator.Beans.Json;
 using AndrealImageGenerator.Beans;
 using AndrealImageGenerator.Graphics.Generators;
 using AndrealImageGenerator.Graphics;
@@ -6,12 +7,24 @@ using Newtonsoft.Json;
 
 namespace AndrealImageGenerator.Api
 {
+    [ComVisible(true)]
+    public enum ImageType { Png, Jpg }
+
+    [ComVisible(true)]
+    public static class Options
+    {
+        public static ImageType imageType = ImageType.Jpg;
+        public static int jpgQuality = 80;
+    }
+
     internal class Api
     {
         private static MemoryStream FileStreamResult(BackGround backGround)
         {
+            ImageType imgType = Options.imageType;
             var ms = new MemoryStream();
-            backGround.SaveAsPng(ms);
+            if (imgType == ImageType.Png) { backGround.SaveAsPng(ms); }
+            else { backGround.SaveAsJpgWithQuality(ms, Options.jpgQuality); }
             ms.Position = 0;
             backGround.Dispose();
             return ms;
