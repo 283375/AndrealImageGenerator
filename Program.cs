@@ -5,7 +5,7 @@ using Path = AndrealImageGenerator.Common.Path;
 
 var path = "";
 var jsonStr = "";
-ImageType imgType = ImageType.Jpg;
+ImgFormat imgFormat = ImgFormat.Jpg;
 int imgQuality = 80;
 var imgVersion = 0;
 var showHelp = false;
@@ -13,7 +13,7 @@ var options = new OptionSet {
     { "p|path=", "Andreal data path", p => path = p },
     { "jb|json-base64=", "base64 encoded JSON string", jsonBase64Str => jsonStr = Encoding.UTF8.GetString(Convert.FromBase64String(jsonBase64Str)) },
     { "jf|json-file=", "JSON file", file => jsonStr = File.ReadAllText(file, Encoding.UTF8) },
-    { "it|img-type=", "jpg | png", t => imgType = (ImageType)Enum.Parse(typeof(ImageType), t, true) },
+    { "it|img-format=", "jpg | png", t => imgFormat = (ImgFormat)Enum.Parse(typeof(ImgFormat), t, true) },
     { "iq|img-quality=", "(JPG only) JPG image quality", (int q) => imgQuality = q },
     { "iv|img-version=", "image version", (int v) => imgVersion = v },
     { "h|help", "show this message and exit", h => showHelp = h != null },
@@ -26,7 +26,7 @@ try
 
     if (showHelp)
     {
-        Console.WriteLine("Andreal ImageGenerator cli");
+        Console.WriteLine("[AndrealImageGenerator] Andreal ImageGenerator cli");
         Console.WriteLine("Options:");
         options.WriteOptionDescriptions(Console.Out);
         return;
@@ -41,7 +41,7 @@ try
 
     if (!(type == "info" || type == "best" || type == "best30"))
     {
-        throw new Exception("Unknown type, expecting one of [info, best, best30].");
+        throw new Exception($"Unknown type \"{type}\", expecting one of [info, best, best30].");
     }
 
     if (path.Length > 0) {
@@ -61,7 +61,7 @@ try
     else if (type == "best") { imgBytes = Api.GetUserBest(jsonStr, imgVersion); }
     else if (type == "best30") { imgBytes = Api.GetUserBest30(jsonStr, imgVersion); }
 
-    string base64Type = imgType == ImageType.Png ? "png" : "jpeg";
+    string base64Type = imgFormat == ImgFormat.Png ? "png" : "jpeg";
     Console.WriteLine($"data:image/{base64Type};base64,{Convert.ToBase64String(imgBytes)}");
     return;
 }

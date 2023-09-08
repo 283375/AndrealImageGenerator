@@ -8,12 +8,12 @@ using Newtonsoft.Json;
 namespace AndrealImageGenerator.Api
 {
     [ComVisible(true)]
-    public enum ImageType { Png, Jpg }
+    public enum ImgFormat { Png, Jpg }
 
     [ComVisible(true)]
     public static class Options
     {
-        public static ImageType imageType = ImageType.Jpg;
+        public static ImgFormat imgFormat = ImgFormat.Jpg;
         public static int jpgQuality = 80;
     }
 
@@ -21,9 +21,9 @@ namespace AndrealImageGenerator.Api
     {
         private static MemoryStream FileStreamResult(BackGround backGround)
         {
-            ImageType imgType = Options.imageType;
+            ImgFormat imageFormat = Options.imgFormat;
             var ms = new MemoryStream();
-            if (imgType == ImageType.Png) { backGround.SaveAsPng(ms); }
+            if (imageFormat == ImgFormat.Png) { backGround.SaveAsPng(ms); }
             else { backGround.SaveAsJpgWithQuality(ms, Options.jpgQuality); }
             ms.Position = 0;
             backGround.Dispose();
