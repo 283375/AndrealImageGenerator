@@ -14,7 +14,7 @@ namespace AndrealImageGenerator.Api
     public static class Options
     {
         public static ImgFormat imgFormat = ImgFormat.Jpg;
-        public static int jpgQuality = 80;
+        public static int jpgQuality = 90;
     }
 
     internal class Api

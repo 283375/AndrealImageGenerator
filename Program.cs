@@ -6,7 +6,7 @@ using Path = AndrealImageGenerator.Common.Path;
 var path = "";
 var jsonStr = "";
 ImgFormat imgFormat = ImgFormat.Jpg;
-int imgQuality = 80;
+int imgQuality = -1;
 var imgVersion = 0;
 var showHelp = false;
 var options = new OptionSet {
@@ -44,7 +44,8 @@ try
         throw new Exception($"Unknown type \"{type}\", expecting one of [info, best, best30].");
     }
 
-    if (path.Length > 0) {
+    if (path.Length > 0)
+    {
         if (System.IO.Path.IsPathRooted(path)) { Path.AndrealDirectory = path; }
         else { Path.AndrealDirectory = System.IO.Path.GetFullPath(path); }
     }
@@ -54,6 +55,11 @@ try
         if (type == "info" || type == "best") { imgVersion = 3; }
         else if (type == "best30") { imgVersion = 2; }
         else { imgVersion = 1; }
+    }
+
+    if (imgQuality > -1)
+    {
+        AndrealImageGenerator.Api.Options.jpgQuality = imgQuality;
     }
 
     byte[] imgBytes = Array.Empty<byte>();
