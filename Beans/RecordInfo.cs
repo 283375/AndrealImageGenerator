@@ -13,12 +13,10 @@ internal class RecordInfo
     {
         Difficulty = recentdata.Difficulty;
         //limiting json document index as band-aid - JustVldKsh
-	if (Difficulty > 3) {Index = 3;} else {Index = Difficulty;};
+        var Index = Difficulty > 3 ? 3 : Difficulty;
         SongInfo = ArcaeaCharts.QueryByID(recentdata.SongID)![Index];
         //and setting RatingClass to 4 if Difficulty == 4 (ETR)
-        if (Difficulty == 4) {
-	    SongInfo.RatingClass = 4;
-        };
+        if (Difficulty == 4) { SongInfo.RatingClass = 4; };
         Cleartype = recentdata.ClearType;
         SongID = recentdata.SongID;
         Rating = recentdata.Rating.ToString("0.0000");
