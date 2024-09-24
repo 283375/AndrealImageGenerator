@@ -12,6 +12,8 @@ internal class DifficultyInfo
 
     static DifficultyInfo()
     {
+        List.TryAdd(4, new() { LongStr = "Eternal", ShortStr = "ETR", Alias = new[] { "etr", "eternal" }, Color = Color.FromArgb(93, 78, 118) });
+
         List.TryAdd(3, new() { LongStr = "Beyond", ShortStr = "BYD", Alias = new[] { "byn", "byd", "beyond" }, Color = Color.FromArgb(165, 20, 49) });
 
         List.TryAdd(2, new() { LongStr = "Future", ShortStr = "FTR", Alias = new[] { "ftr", "future" }, Color = Color.FromArgb(115, 35, 100) });
